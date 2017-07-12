@@ -2,6 +2,7 @@ var questions = [
   {question:"Han toh..what will ya bring?"},
 ];
 var randomWord;
+var rnd;
 
 /**********
 
@@ -64,8 +65,8 @@ function BuildArray(size){
 
 function PickRandomWord() {
 // Generate a random number between 1 and NumberOfWords
-    var rnd = Math.ceil(Math.random() * NumberOfWords)
-
+    rnd = Math.ceil(Math.random() * NumberOfWords)
+    console.log(rnd);
     return words[rnd]
 }
 
@@ -124,16 +125,30 @@ function PickRandomWord() {
     questions[position].value = inputField.value
     
     // check if the pattern matches
-    if (inputField.value.charAt(0) != randomWord.charAt(0)) wrong() 
-    else ok(function() {
-      // set the progress of the background
-      progress.style.width = ++position * 100 / questions.length + 'vw'
+    if (rnd % 2 == 0) {
+        if (inputField.value.charAt(0) != randomWord.charAt(0)) wrong() 
+        else ok(function() {
+        // set the progress of the background
+        progress.style.width = ++position * 100 / questions.length + 'vw'
 
-      // if there is a new question, hide current and load next
-      if (questions[position]) hideCurrent(putQuestion)
-      else hideCurrent(done)
+        // if there is a new question, hide current and load next
+        if (questions[position]) hideCurrent(putQuestion)
+        else hideCurrent(done)
              
     })
+    
+    } else {
+        if (inputField.value.charAt(0) != randomWord.slice(-1)) wrong() 
+        else ok(function() {
+        // set the progress of the background
+        progress.style.width = ++position * 100 / questions.length + 'vw'
+
+        // if there is a new question, hide current and load next
+        if (questions[position]) hideCurrent(putQuestion)
+        else hideCurrent(done)
+             
+        })
+    }
 
   }
 

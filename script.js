@@ -126,7 +126,7 @@ function PickRandomWord() {
     
     // check if the pattern matches
     if (rnd % 2 == 0) {
-        if (inputField.value.charAt(0) != randomWord.charAt(0)) wrong() 
+        if (inputField.value.charAt(0).toUpperCase() != randomWord.charAt(0).toUpperCase()) wrong() 
         else ok(function() {
         // set the progress of the background
         progress.style.width = ++position * 100 / questions.length + 'vw'
@@ -138,7 +138,7 @@ function PickRandomWord() {
     })
     
     } else {
-        if (inputField.value.charAt(0) != randomWord.slice(-1)) wrong() 
+        if (inputField.value.charAt(0).toUpperCase() != randomWord.slice(-1).toUpperCase()) wrong() 
         else ok(function() {
         // set the progress of the background
         progress.style.width = ++position * 100 / questions.length + 'vw'
